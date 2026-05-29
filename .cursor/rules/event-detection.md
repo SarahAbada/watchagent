@@ -32,11 +32,16 @@ Detection logic leverages "Upstream Cities" that physically dictate weather patt
 *   **Strict Rationale Format**: `[PACIFIC_SURGE] | Delta: High Wind and Rain Coastline | Context: Pacific storm front detected at Tofino; moving mainland | Station: Tofino`
 
 ## 2. General Notable Events (All Target Cities)
-- **Extreme Heatwave**: Triggered when `temperature_2m` > 32.0°C.
-- **Urban Flash Flood Risk**: Triggered when `precipitation` > 25.0mm in a single hourly reading window.
-- **Moderate Flash Flood Risk**: Triggered when `precipitation` > 15.0mm in a single hourly reading window.
+- **Persistent Extreme Heatwave (EHW)**: Triggered when `temperature_2m` exceeds the city-specific threshold for 3 consecutive hourly readings.
+  - *Strict Rationale Format*: `[EHW] | Delta: <current_temp>C | Context: <city_specific_significance_asset> | Station: <target_city>`
+- **Persistent Severe Cold Snap (SCS)**: Triggered when `temperature_2m` drops below the city-specific threshold for 3 consecutive hourly readings.
+  - *Strict Rationale Format*: `[SCS] | Delta: <current_temp>C | Context: <city_specific_significance_asset> | Station: <target_city>`
+- **Rapid Flash Freeze (FLASH_FREEZE)**: Triggered across any city when the 1-hour temperature drop is < -5.0°C, the current temperature is < 0.0°C, and active or recent precipitation is > 0.0mm.
+  - *Strict Rationale Format*: `[FLASH_FREEZE] | Delta: <temp_delta>C drop | Context: Rapid drop below freezing on wet surfaces; extreme ice glaze risk | Station: <target_city>`
+- **Urban Flash Flood Risk**: Triggered when `precipitation` >= 25.0mm in a single hourly reading window.
+- **Moderate Flash Flood Risk**: Triggered when `precipitation` >= 15.0mm in a single hourly reading window.
 - **Severe Windchill Hazard**: Triggered when `apparent_temperature` < -30.0°C.
 
 ## 3. Rationale String Construction Rule
 Every generated event must construct its `rationale` column string matching this exact pattern:
-`[EVENT_TYPE] | Delta: <calculated_numerical_delta> | Context: <meteorological_significance> | Station: <reporting_city>`
+`[EVENT_TYPE] | Delta: <calculated_numerical_delta> | Context: <meteorological_significance_asset> | Station: <target_city>`

@@ -246,6 +246,35 @@ def get_reading_before_timestamp(
         return _reading_row_to_dict(row) if row else None
 
 
+def get_preceding_readings(
+    pool: DatabasePool,
+    city: str,
+    before_timestamp: str,
+    limit: int,
+) -> list[dict[str, Any]]:
+    bounded_limit = max(1, min(limit, 10))
+    with pool.connection() as connection:
+        cursor = connection.execute(
+            """
+            SELECT
+                id,
+                city,
+                timestamp,
+                temperature_2m,
+                apparent_temperature,
+                precipitation,
+                wind_speed_10m,
+                weather_code
+            FROM weather_readings
+            WHERE city = ? AND timestamp < ?
+            ORDER BY timestamp DESC
+            LIMIT ?;
+            """,
+            (city, before_timestamp, bounded_limit),
+        )
+        return [_reading_row_to_dict(row) for row in cursor.fetchall()]
+
+
 def get_latest_timestamp(pool: DatabasePool, city: str) -> str | None:
     with pool.connection() as connection:
         cursor = connection.execute(

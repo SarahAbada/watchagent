@@ -190,3 +190,17 @@
 2026-05-29 09:31:59,846 INFO [app.poller] Stored reading for Windsor at 2026-05-29T09:30
 2026-05-29 09:32:00,310 INFO [app.poller] Stored reading for Chicago at 2026-05-29T08:30
 2026-05-29 09:32:00,824 INFO [app.poller] Stored reading for Tofino at 2026-05-29T06:30
+2026-05-29 17:36:18,296 INFO [app.database] Database schema initialized at path: /app/data/weather.db
+2026-05-29 17:36:18,322 INFO [app.poller] Weather poller started
+2026-05-29 17:36:18,323 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-29 17:36:18,340 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.2:5000
+2026-05-29 17:36:18,340 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-29 17:36:19,090 INFO [app.poller] Stored reading for Windsor at 2026-05-29T13:30
+2026-05-29 17:36:19,580 INFO [app.poller] Stored reading for Chicago at 2026-05-29T12:30
+2026-05-29 17:36:20,167 INFO [app.poller] Stored reading for Tofino at 2026-05-29T10:30
+2026-05-29 17:36:20,700 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T13:30
+2026-05-29 17:36:21,290 INFO [app.poller] Stored reading for Toronto at 2026-05-29T13:30
+2026-05-29 17:36:21,916 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T10:30

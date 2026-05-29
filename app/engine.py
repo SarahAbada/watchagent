@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import sqlite3
-from typing import Any
+from typing import Any, Callable
 
 from app import database
 
@@ -135,6 +135,7 @@ class WeatherEvaluationEngine:
 
         events.extend(self._evaluate_severe_cold_snap(reading, payload))
         events.extend(self._evaluate_extreme_heat_wave(reading, payload))
+        events.extend(self._evaluate_flash_freeze(reading, payload))
         events.extend(self._evaluate_flood_risks(reading, payload))
         events.extend(self._evaluate_severe_windchill(reading, payload))
         return events
@@ -147,6 +148,7 @@ class WeatherEvaluationEngine:
             events.extend(self._evaluate_corridor_from_upstream(reading))
         if city == "Tofino":
             events.extend(self._evaluate_pacific_surge_from_upstream(reading))
+        events.extend(self._evaluate_flash_freeze(reading, _reading_payload(reading)))
         return events
 
     def _evaluate_thermal_trap(
@@ -327,6 +329,14 @@ class WeatherEvaluationEngine:
         temp = reading["temperature_2m"]
         if temp >= threshold:
             return []
+        if not self._three_hour_temperature_streak(
+            city=city,
+            current_timestamp=reading["timestamp"],
+            current_temperature=temp,
+            comparator=lambda value, bound: value < bound,
+            threshold=threshold,
+        ):
+            return []
 
         delta = f"{temp:.1f}C"
         rationale = _format_rationale("SCS", delta, context, city)
@@ -348,6 +358,14 @@ class WeatherEvaluationEngine:
         temp = reading["temperature_2m"]
         if temp <= threshold:
             return []
+        if not self._three_hour_temperature_streak(
+            city=city,
+            current_timestamp=reading["timestamp"],
+            current_temperature=temp,
+            comparator=lambda value, bound: value > bound,
+            threshold=threshold,
+        ):
+            return []
 
         delta = f"{temp:.1f}C"
         rationale = _format_rationale("EHW", delta, context, city)
@@ -360,6 +378,69 @@ class WeatherEvaluationEngine:
                 payload=payload,
             )
         ]
+
+    def _evaluate_flash_freeze(
+        self, reading: dict[str, Any], payload: dict[str, Any]
+    ) -> list[dict[str, Any]]:
+        city = reading["city"]
+        temp = reading["temperature_2m"]
+        if temp >= 0.0:
+            return []
+
+        temp_delta = self._one_hour_temperature_delta(reading)
+        if temp_delta is None or temp_delta >= -5.0:
+            return []
+
+        prior = database.get_reading_before_timestamp(
+            self._pool,
+            city,
+            reading["timestamp"],
+        )
+        prior_precipitation = prior["precipitation"] if prior is not None else 0.0
+        if reading["precipitation"] <= 0.0 and prior_precipitation <= 0.0:
+            return []
+
+        delta = f"{temp_delta:.1f}C drop"
+        rationale = _format_rationale(
+            "FLASH_FREEZE",
+            delta,
+            "Rapid drop below freezing on wet surfaces; extreme ice glaze risk",
+            city,
+        )
+        return [
+            self._build_event(
+                city=city,
+                timestamp=reading["timestamp"],
+                event_type="FLASH_FREEZE",
+                rationale=rationale,
+                payload=payload,
+            )
+        ]
+
+    def _three_hour_temperature_streak(
+        self,
+        city: str,
+        current_timestamp: str,
+        current_temperature: float,
+        comparator: Callable[[float, float], bool],
+        threshold: float,
+    ) -> bool:
+        if not comparator(current_temperature, threshold):
+            return False
+
+        preceding = database.get_preceding_readings(
+            self._pool,
+            city,
+            current_timestamp,
+            limit=2,
+        )
+        if len(preceding) < 2:
+            return False
+
+        for prior_reading in preceding:
+            if not comparator(prior_reading["temperature_2m"], threshold):
+                return False
+        return True
 
     def _evaluate_flood_risks(
         self, reading: dict[str, Any], payload: dict[str, Any]
