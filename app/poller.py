@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from app import database
+from app.engine import WeatherEvaluationEngine
 from app.logging_config import sanitize_log_value
 
 logger = logging.getLogger(__name__)
@@ -35,9 +36,21 @@ RETRIABLE_STATUS_CODES = frozenset({429}) | set(range(500, 600))
 FATAL_STATUS_CODES = frozenset({400, 404, 422})
 
 CITIES: tuple[dict[str, str | float], ...] = (
+    {"name": "Windsor", "latitude": 42.31, "longitude": -83.04},
+    {"name": "Chicago", "latitude": 41.88, "longitude": -87.63},
+    {"name": "Tofino", "latitude": 49.15, "longitude": -125.91},
     {"name": "Ottawa", "latitude": 45.42, "longitude": -75.69},
     {"name": "Toronto", "latitude": 43.70, "longitude": -79.42},
     {"name": "Vancouver", "latitude": 49.25, "longitude": -123.12},
+)
+
+POLL_CITY_ORDER: tuple[str, ...] = (
+    "Windsor",
+    "Chicago",
+    "Tofino",
+    "Ottawa",
+    "Toronto",
+    "Vancouver",
 )
 
 
@@ -107,6 +120,7 @@ class WeatherPoller:
             for city in CITIES
         }
         self._sessions_lock = threading.Lock()
+        self._engine = WeatherEvaluationEngine(pool)
 
     def start(self) -> None:
         if self._thread is not None and self._thread.is_alive():
@@ -139,7 +153,7 @@ class WeatherPoller:
 
     def _run_loop(self) -> None:
         while not self._shutdown_event.is_set():
-            for city_name in ("Ottawa", "Toronto", "Vancouver"):
+            for city_name in POLL_CITY_ORDER:
                 if self._shutdown_event.is_set():
                     break
                 self._poll_city(city_name)
@@ -303,6 +317,40 @@ class WeatherPoller:
             city_name,
             sanitize_log_value(incoming_timestamp),
         )
+        self._persist_events(reading)
+
+    def _persist_events(self, reading: dict[str, Any]) -> None:
+        try:
+            triggered_events = self._engine.evaluate_reading(reading)
+        except RuntimeError:
+            logger.exception(
+                "Skipping event persistence after evaluation failure for %s",
+                reading["city"],
+            )
+            return
+
+        for event in triggered_events:
+            try:
+                database.insert_event(
+                    self._pool,
+                    city=event["city"],
+                    timestamp=event["timestamp"],
+                    event_type=event["event_type"],
+                    rationale=event["rationale"],
+                    payload_snapshot=event["payload_snapshot"],
+                )
+                logger.info(
+                    "Stored event %s for %s at %s",
+                    event["event_type"],
+                    event["city"],
+                    sanitize_log_value(event["timestamp"]),
+                )
+            except sqlite3.Error:
+                logger.exception(
+                    "Failed to insert event %s for %s",
+                    event["event_type"],
+                    event["city"],
+                )
 
     def _execute_clean_state_reset(self, session: CitySession) -> None:
         session.reset_http_client()

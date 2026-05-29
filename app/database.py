@@ -182,6 +182,70 @@ def close_pool() -> None:
             _pool = None
 
 
+def _reading_row_to_dict(row: sqlite3.Row) -> dict[str, Any]:
+    return {
+        "id": row["id"],
+        "city": row["city"],
+        "timestamp": row["timestamp"],
+        "temperature_2m": row["temperature_2m"],
+        "apparent_temperature": row["apparent_temperature"],
+        "precipitation": row["precipitation"],
+        "wind_speed_10m": row["wind_speed_10m"],
+        "weather_code": row["weather_code"],
+    }
+
+
+def get_reading_at_timestamp(
+    pool: DatabasePool, city: str, timestamp: str
+) -> dict[str, Any] | None:
+    with pool.connection() as connection:
+        cursor = connection.execute(
+            """
+            SELECT
+                id,
+                city,
+                timestamp,
+                temperature_2m,
+                apparent_temperature,
+                precipitation,
+                wind_speed_10m,
+                weather_code
+            FROM weather_readings
+            WHERE city = ? AND timestamp = ?
+            LIMIT 1;
+            """,
+            (city, timestamp),
+        )
+        row = cursor.fetchone()
+        return _reading_row_to_dict(row) if row else None
+
+
+def get_reading_before_timestamp(
+    pool: DatabasePool, city: str, before_timestamp: str
+) -> dict[str, Any] | None:
+    with pool.connection() as connection:
+        cursor = connection.execute(
+            """
+            SELECT
+                id,
+                city,
+                timestamp,
+                temperature_2m,
+                apparent_temperature,
+                precipitation,
+                wind_speed_10m,
+                weather_code
+            FROM weather_readings
+            WHERE city = ? AND timestamp < ?
+            ORDER BY timestamp DESC
+            LIMIT 1;
+            """,
+            (city, before_timestamp),
+        )
+        row = cursor.fetchone()
+        return _reading_row_to_dict(row) if row else None
+
+
 def get_latest_timestamp(pool: DatabasePool, city: str) -> str | None:
     with pool.connection() as connection:
         cursor = connection.execute(

@@ -21,7 +21,7 @@ app.json.sort_keys = False
 _poller: WeatherPoller | None = None
 
 
-def _parse_limit(raw_limit: str | None, default: int = 100) -> int:
+def _parse_limit(raw_limit: str | None, default: int = 50) -> int:
     if raw_limit is None:
         return default
     try:
@@ -47,6 +47,23 @@ def health() -> tuple[object, int]:
             jsonify({"status": "unhealthy", "error": str(exc)}),
             503,
         )
+
+
+@app.route("/events", methods=["GET"])
+def events() -> tuple[object, int]:
+    city = request.args.get("city")
+    limit_param = request.args.get("limit")
+
+    try:
+        limit = _parse_limit(limit_param)
+        pool = database.get_pool()
+        rows = database.get_events(pool, city=city, limit=limit)
+        return jsonify({"events": rows}), 200
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    except (sqlite3.Error, TimeoutError, RuntimeError) as exc:
+        logger.exception("Failed to fetch events")
+        return jsonify({"error": str(exc)}), 500
 
 
 @app.route("/readings", methods=["GET"])
