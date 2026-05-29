@@ -1,0 +1,143 @@
+2026-05-28 21:41:24,968 INFO [app.database] Database schema initialized at path: /tmp/test_weather.db
+2026-05-28 21:41:24,995 INFO [app.poller] Weather poller started
+2026-05-28 21:41:25,554 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T21:30
+2026-05-28 21:41:26,104 INFO [app.poller] Stored reading for Toronto at 2026-05-28T21:30
+2026-05-28 21:41:26,651 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T18:30
+2026-05-28 21:41:36,998 INFO [app.poller] Weather poller stopped
+2026-05-28 21:41:37,029 INFO [app.database] Database connection pool closed
+2026-05-28 21:49:46,394 INFO [app.database] Database schema initialized at path: ./data/weather.db
+2026-05-28 21:49:46,416 INFO [app.poller] Weather poller started
+2026-05-28 21:49:46,416 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 21:49:46,430 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.30.151.131:5000
+2026-05-28 21:49:46,430 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-28 21:49:47,189 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T21:45
+2026-05-28 21:49:47,773 INFO [app.poller] Stored reading for Toronto at 2026-05-28T21:45
+2026-05-28 21:49:48,596 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T18:45
+2026-05-28 21:55:48,223 INFO [__main__] Shutdown signal received: 15
+2026-05-28 21:55:48,234 INFO [app.poller] Weather poller stopped
+2026-05-28 21:55:48,251 INFO [app.database] Database connection pool closed
+2026-05-28 21:55:48,252 INFO [app.poller] Weather poller stopped
+2026-05-28 21:56:09,379 INFO [app.database] Database schema initialized at path: /home/sarah/watchagent/data/weather.db
+2026-05-28 21:56:09,382 INFO [app.poller] Weather poller started
+2026-05-28 21:56:09,382 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 21:56:09,387 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.30.151.131:5000
+2026-05-28 21:56:09,387 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-28 21:56:19,316 INFO [werkzeug] 127.0.0.1 - - [28/May/2026 21:56:19] "GET /health HTTP/1.1" 200 -
+2026-05-28 21:56:58,926 INFO [app.database] Database schema initialized at path: /home/sarah/watchagent/data/weather.db
+2026-05-28 21:56:58,930 INFO [app.poller] Weather poller started
+2026-05-28 21:56:58,930 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 21:56:59,505 INFO [app.poller] Weather poller stopped
+2026-05-28 21:56:59,507 INFO [app.database] Database connection pool closed
+2026-05-28 21:57:09,211 INFO [werkzeug] 127.0.0.1 - - [28/May/2026 21:57:09] "GET /health HTTP/1.1" 200 -
+2026-05-28 21:58:50,054 INFO [app.database] Database schema initialized at path: /home/sarah/watchagent/data/weather.db
+2026-05-28 21:58:50,061 INFO [app.poller] Weather poller started
+2026-05-28 21:58:50,062 INFO [__main__] Starting Flask server on 0.0.0.0:5001
+2026-05-28 21:58:50,070 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.30.151.131:5001
+2026-05-28 21:58:50,071 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-28 21:59:19,172 INFO [werkzeug] 127.0.0.1 - - [28/May/2026 21:59:19] "GET /health HTTP/1.1" 200 -
+2026-05-28 21:59:54,244 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:00:02,634 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: HTTP 502 | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:00:04,306 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: HTTP 502 | Attempt: 1 | Wait: 2s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:00:10,737 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T22:00
+2026-05-28 22:00:16,461 INFO [app.poller] Stored reading for Toronto at 2026-05-28T22:00
+2026-05-28 22:00:20,668 INFO [app.database] Database schema initialized at path: ./data/weather.db
+2026-05-28 22:00:20,672 INFO [app.poller] Weather poller started
+2026-05-28 22:00:20,672 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 22:00:23,503 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T19:00
+2026-05-28 22:00:24,699 INFO [app.poller] Weather poller stopped
+2026-05-28 22:00:24,700 INFO [app.database] Database connection pool closed
+2026-05-28 22:01:40,458 INFO [__main__] Shutdown signal received: 15
+2026-05-28 22:01:40,804 INFO [app.poller] Weather poller stopped
+2026-05-28 22:01:40,809 INFO [app.database] Database connection pool closed
+2026-05-28 22:01:40,811 INFO [app.poller] Weather poller stopped
+2026-05-28 22:01:45,726 INFO [app.database] Database schema initialized at path: ./data/weather.db
+2026-05-28 22:01:45,729 INFO [app.poller] Weather poller started
+2026-05-28 22:01:45,729 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 22:01:45,740 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.30.151.131:5000
+2026-05-28 22:01:45,740 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-28 22:02:17,265 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:05:31,632 INFO [__main__] Shutdown signal received: 2
+2026-05-28 22:05:31,633 INFO [app.poller] Weather poller stopped
+2026-05-28 22:05:31,637 INFO [app.database] Database connection pool closed
+2026-05-28 22:05:31,639 INFO [app.poller] Weather poller stopped
+2026-05-28 22:05:33,888 INFO [app.database] Database schema initialized at path: ./data/weather.db
+2026-05-28 22:05:33,892 INFO [app.poller] Weather poller started
+2026-05-28 22:05:33,893 INFO [__main__] Starting Flask server on 0.0.0.0:5000
+2026-05-28 22:05:33,899 INFO [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.30.151.131:5000
+2026-05-28 22:05:33,899 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2026-05-28 22:09:40,769 WARNING [app.poller] [POLL_WARNING] City: Toronto | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=43.7&amp;longitude=-79.42&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:10:58,651 WARNING [app.poller] [POLL_WARNING] City: Toronto | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=43.7&amp;longitude=-79.42&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:15:02,301 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T22:15
+2026-05-28 22:15:03,002 INFO [app.poller] Stored reading for Toronto at 2026-05-28T22:15
+2026-05-28 22:15:03,793 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T19:15
+2026-05-28 22:16:09,084 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&longitude=-123.12&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Cwind_speed_10m%2Cweather_code&wind_speed_unit=kmh&timezone=auto
+2026-05-28 22:21:53,721 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:25:46,230 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:29:01,621 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:30:08,062 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T22:30
+2026-05-28 22:30:14,293 INFO [app.poller] Stored reading for Toronto at 2026-05-28T22:30
+2026-05-28 22:30:19,913 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T19:30
+2026-05-28 22:42:28,766 WARNING [app.poller] [POLL_WARNING] City: Toronto | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=43.7&amp;longitude=-79.42&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:44:49,847 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:45:05,648 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T22:45
+2026-05-28 22:45:06,335 INFO [app.poller] Stored reading for Toronto at 2026-05-28T22:45
+2026-05-28 22:45:07,055 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T19:45
+2026-05-28 22:47:14,557 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 22:47:38,153 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 23:02:44,003 WARNING [app.poller] [POLL_WARNING] City: Vancouver | Action: RETRYING | Error: URLError | Attempt: 1 | Wait: 2s | Request: https://api.open-meteo.com/v1/forecast?latitude=49.25&amp;longitude=-123.12&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-28 23:02:53,716 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T20:00
+2026-05-28 23:44:18,133 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T23:30
+2026-05-28 23:44:18,696 INFO [app.poller] Stored reading for Toronto at 2026-05-28T23:30
+2026-05-28 23:44:19,158 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T20:30
+2026-05-28 23:45:03,603 INFO [app.poller] Stored reading for Ottawa at 2026-05-28T23:45
+2026-05-28 23:45:04,154 INFO [app.poller] Stored reading for Toronto at 2026-05-28T23:45
+2026-05-28 23:45:04,670 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T20:45
+2026-05-28 23:46:17,315 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 00:00:03,385 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: HTTP 502 | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 00:00:04,887 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: HTTP 502 | Attempt: 1 | Wait: 2s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 00:00:13,073 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T00:00
+2026-05-29 00:00:18,286 INFO [app.poller] Stored reading for Toronto at 2026-05-29T00:00
+2026-05-29 00:00:23,824 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T21:00
+2026-05-29 00:06:54,226 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T00:15
+2026-05-29 00:06:55,197 INFO [app.poller] Stored reading for Toronto at 2026-05-29T00:15
+2026-05-29 00:18:11,527 INFO [app.poller] Stored reading for Vancouver at 2026-05-28T21:15
+2026-05-29 00:21:44,660 WARNING [app.poller] [POLL_WARNING] City: Toronto | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=43.7&amp;longitude=-79.42&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 03:30:40,102 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T03:30
+2026-05-29 03:30:40,857 INFO [app.poller] Stored reading for Toronto at 2026-05-29T03:30
+2026-05-29 03:30:41,550 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T00:30
+2026-05-29 03:45:05,018 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T03:45
+2026-05-29 03:45:05,491 INFO [app.poller] Stored reading for Toronto at 2026-05-29T03:45
+2026-05-29 03:45:06,025 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T00:45
+2026-05-29 04:00:04,175 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: HTTP 502 | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 04:00:11,684 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T04:00
+2026-05-29 04:00:16,539 INFO [app.poller] Stored reading for Toronto at 2026-05-29T04:00
+2026-05-29 04:00:22,058 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T01:00
+2026-05-29 04:15:01,457 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T04:15
+2026-05-29 04:15:02,143 INFO [app.poller] Stored reading for Toronto at 2026-05-29T04:15
+2026-05-29 04:15:02,797 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T01:15
+2026-05-29 04:30:09,297 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T04:30
+2026-05-29 04:30:14,167 INFO [app.poller] Stored reading for Toronto at 2026-05-29T04:30
+2026-05-29 04:30:19,142 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T01:30
+2026-05-29 04:40:30,477 WARNING [app.poller] [POLL_WARNING] City: Ottawa | Action: RETRYING | Error: URLError | Attempt: 0 | Wait: 1s | Request: https://api.open-meteo.com/v1/forecast?latitude=45.42&amp;longitude=-75.69&amp;current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,weather_code&amp;wind_speed_unit=kmh&amp;timezone=auto
+2026-05-29 04:42:16,091 INFO [app.poller] Stored reading for Ottawa at 2026-05-29T04:45
+2026-05-29 04:42:16,941 INFO [app.poller] Stored reading for Toronto at 2026-05-29T04:45
+2026-05-29 04:42:17,506 INFO [app.poller] Stored reading for Vancouver at 2026-05-29T01:45
+2026-05-29 04:59:25,857 INFO [__main__] Shutdown signal received: 2
+2026-05-29 04:59:25,885 INFO [app.poller] Weather poller stopped
+2026-05-29 04:59:25,913 INFO [app.database] Database connection pool closed
+2026-05-29 04:59:25,915 INFO [app.poller] Weather poller stopped
