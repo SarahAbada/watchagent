@@ -1,4 +1,6 @@
 # WatchAgent: Weather Monitor & Infrastructure Risk Engine
+> **WatchAgent Engineering Overview & Architecture Defense Walkthrough**  
+> 🎥 [Watch the 17-Minute Video Presentation on YouTube](https://youtu.be/ZVoXCzveHPI)
 
 WatchAgent is a security-first, high-reliability infrastructure monitoring daemon and HTTP API written in Python 3.11+. The service continuously orchestrates weather ingestion loops across Canadian economic corridors, executes deterministic micro-climate risk assessment modeling, and exposes historical intelligence metrics through a structured, authenticated-parity endpoint array.
 ## 1. System Architecture & Visualization
