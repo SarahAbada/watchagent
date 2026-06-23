@@ -1,0 +1,4 @@
+com/watchagent/domain/model/Event.class
+com/watchagent/domain/model/WeatherReading.class
+com/watchagent/domain/port/WeatherReadingRepository.class
+com/watchagent/domain/engine/RiskAssessmentEngine.class
